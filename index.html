@@ -2,12 +2,14 @@
 <html>
 <head>
     <style>
-        :root {
+        /* Variables */
+         :root {
             --bg-color: rgb(82, 87, 90); /* gray */
             --hi-light: rgb(212, 210, 216); /* off white */
-            --etch-red: rgb(212, 0, 0); 
+            --etch-red: rgb(212, 0, 0);
+            --bright-red: rgb(238, 0, 66); 
         }
-        
+              
         html,
         body {
             margin: 0;
@@ -20,20 +22,36 @@
             background-repeat: no-repeat;
         }
         
-        body {
+        /* body {
             display: flex;
             height: 100vh;
             align-items: center;
             justify-content: center;
             flex-direction: column;
+        } */
+        
+        /* Typography */
+        @import url('https://fonts.googleapis.com/css?family=Fjalla+One|Lato:400,700,700i');
+        
+        h1 {
+            font-family: 'Fjalla One', Arial, sans-serif;
+            font-size: 3em;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgb(212, 0, 0);
+            /* display: inline-block; */
+        }
+        
+        p {
+            font-family: Lato, Georgia, Times, "Times New Roman", serif;
+            font-size: 1.5em; 
         }
         
         .container {
-            width: 100%;
+            width: 85%;
             height: 100%;
             max-width: 1034px;
             max-height: 543px;
-            margin: 0 auto;    
+            margin: 0 auto;  
         }
         
         .channel {
@@ -55,9 +73,20 @@
             height: 100%;
         }
         
-        .controls {
+        button {
             position: relative;
-            display: inline-block;
+            display: block;
+            margin: 50vh 0 0 0;
+            height: 50px;
+            text-align: center;
+            width: 80px;
+            cursor: pointer;
+            background-color: --bright-red;
+        }
+        
+        /*   .controls {
+            position: relative;
+            display: inline;
             height: 10%;
             margin-bottom: 15px;
         }
@@ -66,9 +95,9 @@
             line-height: 50px;
             height: 50px;
             text-align: center;
-            width: 250px;
-            cursor: pointer;
-        }
+            width: 100px;
+            background-color: --bright-red;
+        } */
     
     </style>
     <meta charset="utf-8">
@@ -124,21 +153,21 @@
             render() {
               return (
                     <div> 
-                      <section className="controls">
-                            <button onClick={this.catsOn} className="btn" >
+                        <iframe width="560" height="315" src={this.state.channel} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+                        <section className="controls">
+                            <button onClick={this.catsOn} >
                                 Cats
                             </button>
-                            
+
                             <button onClick={this.dogsOn} >
                                 Dogs
                             </button>
-                            
+
                             <button onClick={this.abstOn}>
                                 Abstract
                             </button>
                         </section>
-                      
-                        <iframe width="560" height="315" src={this.state.channel} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                     </div>
                 ) // end return
             } // end render 
