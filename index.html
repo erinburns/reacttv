@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        :root {
+            --bg-color: rgb(82, 87, 90); /* gray */
+            --hi-light: rgb(212, 210, 216); /* off white */
+            --etch-red: rgb(212, 0, 0); 
+        }
+        
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-color); /* fallback for old browsers */
+            background: -webkit-linear-gradient(to top, rgb(255,255,255), rgb(212,210,216)); /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to top, rgb(255,255,255), rgb(212, 210, 216)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            background-repeat: no-repeat;
+        }
+        
+        body {
+            display: flex;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        
+        .container {
+            width: 100%;
+            height: 100%;
+            max-width: 1034px;
+            max-height: 543px;
+            margin: 0 auto;    
+        }
+        
+        .channel {
+            position: relative;
+            padding-top: 25px;
+            padding-bottom: 67.5%;
+            height: 0;
+        }
+        
+        .channel iframe {
+            box-sizing: border-box;
+            background: url(assets/images/etch-a-sketch.jpg) center center no-repeat;
+            background-size: contain;
+            padding: 11.9% 15.5% 14.8%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .controls {
+            position: relative;
+            display: inline-block;
+            height: 10%;
+            margin-bottom: 15px;
+        }
+        
+        .btn {
+            line-height: 50px;
+            height: 50px;
+            text-align: center;
+            width: 250px;
+            cursor: pointer;
+        }
+    
+    </style>
+    <meta charset="utf-8">
+    <!-- load React-->
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <!-- load Babel -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+    <title>React TV</title>
+    <meta description="Practicing React 16 by making a television... ok it's really an Etch-a-Sketch.">
+</head>
+
+<body>
+    <div class="container">
+        <h1> React TV</h1>
+        <p> Ok, it's an Etch-a-Sketch, but it acts like a TV. Go ahead, pick a channel.</p>
+        <div id="render-reactables" class="channel"></div>
+    </div>
+    
+    <script type="text/babel"> 
+
+        class ReactTv extends React.Component {
+            constructor(props) { 
+                super(props)
+                this.state = {
+                        "channel": '',
+                  }
+                
+                this.catsOn = this.catsOn.bind(this)
+                this.dogsOn = this.dogsOn.bind(this)
+                this.abstOn = this.abstOn.bind(this)
+            } // end constructor
+            
+            // if channel is null or not null, on click change channel to cats
+            catsOn() {  
+                let changeChannel = this.state.channel == '' || !'' ? "https://www.youtube.com/embed/rasBWmckwng?rel=0&amp;showinfo=0" : ''
+                this.setState({ channel: changeChannel });
+            }
+            
+            // if channel is null or not null, on click change channel to dogs
+            dogsOn() {
+                let changeChannel = this.state.channel == '' || !'' ? "https://www.youtube.com/embed/HZkEJ-Xkow4" : ''
+                this.setState({ channel: changeChannel });
+            }
+            
+            // if channel is null or not null, on click change channel to abstract
+            abstOn() {
+                let changeChannel = this.state.channel == '' || !'' ? "https://www.youtube.com/embed/NVb5GV6lntU" : ''
+                this.setState({ channel: changeChannel });
+            }
+            
+            // render the empty iframe and buttons
+            render() {
+              return (
+                    <div> 
+                      <section className="controls">
+                            <button onClick={this.catsOn} className="btn" >
+                                Cats
+                            </button>
+                            
+                            <button onClick={this.dogsOn} >
+                                Dogs
+                            </button>
+                            
+                            <button onClick={this.abstOn}>
+                                Abstract
+                            </button>
+                        </section>
+                      
+                        <iframe width="560" height="315" src={this.state.channel} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    </div>
+                ) // end return
+            } // end render 
+        } // end component
+
+
+        ReactDOM.render(
+            <ReactTv />,
+            document.getElementById('render-reactables')
+        )
+    </script>
+</body>
+    
+</html>
