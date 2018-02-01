@@ -67,16 +67,15 @@
             background-size: contain;
             padding: 11.9% 15.5% 14.8%;
             position: absolute;
-            top: 0;
+            top: 50;
             left: 0;
             width: 100%;
             height: 100%;
         }
         
         button {
-            position: relative;
-            display: block;
-            margin: 50vh 0 0 0;
+            display: inline-block; 
+            margin: 0 2.5vh 2.5vh 0; 
             height: 50px;
             text-align: center;
             width: 80px;
@@ -84,13 +83,15 @@
             background-color: --bright-red;
         }
         
-          /*  .controls {
-            position: relative;
-            display: inline;
-            height: 10%;
-            margin-bottom: 15px;
+        /* .controls {
+            position: absolute;
+            top: -10vh;  
+            left: 1px;
+            display: inline-block;
+           padding: 7.5%; 
         }
         
+       
        .btn {
             line-height: 50px;
             height: 50px;
@@ -153,9 +154,7 @@
             render() {  
               return (
                     <div> 
-                        <iframe width="560" height="315" src={this.state.channel} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-
-                        <section className="controls" >
+                      <section className="container controls" >
                             <button onClick={this.catsOn} >
                                 Cats
                             </button>
@@ -168,6 +167,8 @@
                                 Abstract
                             </button>
                         </section>
+                      
+                        <iframe width="560" height="315" src={this.state.channel} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>  
                     </div>
                 ) // end return
             } // end render 
