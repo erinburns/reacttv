@@ -89,4 +89,5 @@
             /* positions the buttons inline */
             display: inline;
             margin: 0 var(--gap) var(--gap) 0;
+            max-width: 85%;
         }

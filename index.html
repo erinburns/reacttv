@@ -15,21 +15,22 @@
     <!-- responsive -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- styles -->
+    <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="styles.css">
     <title>React TV</title>
     <meta description="Practicing React 16 by making a television... ok it's really an Etch-a-Sketch.">
 </head>
 
 <body>
-    <main> 
+    <main>
         <div class="container">
             <h1> React TV</h1>
             <p> Ok, it's an Etch-a-Sketch, but it acts like a TV. Go ahead, pick a channel.</p>
             <div id="render-reactables" class="channel"></div>
         </div>
     </main>
-    
-    
+
+
     <footer class="page-footer">
       <div class="container">
         <div class="row">
@@ -53,61 +54,61 @@
         </div>
       </div>
     </footer>
-    
-    <script type="text/babel"> 
+
+    <script type="text/babel">
 
         class ReactTv extends React.Component {
-            constructor(props) { 
+            constructor(props) {
                 super(props)
                 this.state = {
                         "channel": '',
                   }
-                
+
                 this.catsOn = this.catsOn.bind(this)
                 this.dogsOn = this.dogsOn.bind(this)
                 this.abstOn = this.abstOn.bind(this)
             } // end constructor
-            
+
             // if channel is null or not null, on click change channel to cats
-            catsOn() {  
+            catsOn() {
                 let changeChannel = this.state.channel == '' || !'' ? "https://www.youtube.com/embed/rasBWmckwng?rel=0&amp;showinfo=0" : ''
                 this.setState({ channel: changeChannel });
             }
-            
+
             // if channel is null or not null, on click change channel to dogs
             dogsOn() {
                 let changeChannel = this.state.channel == '' || !'' ? "https://www.youtube.com/embed/HZkEJ-Xkow4" : ''
                 this.setState({ channel: changeChannel });
             }
-            
+
             // if channel is null or not null, on click change channel to abstract
             abstOn() {
                 let changeChannel = this.state.channel == '' || !'' ? "https://www.youtube.com/embed/NVb5GV6lntU" : ''
                 this.setState({ channel: changeChannel });
             }
-            
+
             // render the empty iframe and buttons
-            render() {  
+            render() {
               return (
-                    <div> 
+                    <div>
                       <section className="controls" >
                             <div onClick={this.catsOn}>
                                 <a class="waves-effect waves-light btn">Cats</a>
                             </div>
-                          
+
                             <div onClick={this.dogsOn}>
                                 <a class="waves-effect waves-light btn">Dogs</a>
                             </div>
-                          
+
                             <div onClick={this.abstOn}>
                                 <a class="waves-effect waves-light btn">Abstract</a>
                             </div>
                         </section>
-                      
-                        <iframe width="560" height="315" src={this.state.channel} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>  
+
+                        <iframe width="560" height="315" src={this.state.channel} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                     </div>
                 ) // end return
-            } // end render 
+            } // end render
         } // end component
 
 
@@ -117,5 +118,5 @@
         )
     </script>
 </body>
-    
+
 </html>
